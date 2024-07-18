@@ -75,6 +75,8 @@ while running:
                 # A number key is pressed
                 if event.key > 48 and event.key < 58:
                     ITERATIONS = (event.key - 48) * 100
+                if event.key == 48:
+                    PIXEL_SIZE_CHANGE = not PIXEL_SIZE_CHANGE
 
                 # E key is pressed
                 if event.key == 101:
@@ -90,6 +92,7 @@ while running:
                 if PIXEL_SIZE_CHANGE:
                     pixel_size = MAX_PIXEL_SIZE
                 else:
+                    pixel_size = DEFAULT_PIXEL_SIZE
                     screen.fill("#000000")
                 break
             if event.type == pygame.MOUSEBUTTONDOWN:
