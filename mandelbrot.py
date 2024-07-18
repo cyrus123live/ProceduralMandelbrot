@@ -3,11 +3,11 @@ import math
 from random import randint as rand
 from random import shuffle
 
-WIDTH = 1000
-HEIGHT = 1000
-MAX_PIXEL_SIZE = 64
+WIDTH = 512
+HEIGHT = 512
+MAX_PIXEL_SIZE = 8
 DEFAULT_PIXEL_SIZE = 1
-ITERATIONS = 200
+ITERATIONS = 100
 LIMIT = 4
 REDRAW_INTERVAL = 0.2
 PIXEL_SIZE_CHANGE = True
@@ -71,27 +71,27 @@ while running:
                 # Escape pressed
                 if event.key == 27:
                     quit()
+
+                # A number key is pressed
+                if event.key > 48 and event.key < 58:
+                    ITERATIONS = (event.key - 48) * 100
+
                 # E key is pressed
                 if event.key == 101:
                     complex_dist *= 4
-                    break_flag = True
-                    if PIXEL_SIZE_CHANGE:
-                        pixel_size = MAX_PIXEL_SIZE
-                    else:
-                        screen.fill("#000000")
-                    break
 
                 # R key is pressed
                 if event.key == 114:
-                    break_flag = True
                     center_a = DEFAULT_CENTER_A
                     center_b = DEFAULT_CENTER_B
                     complex_dist = DEFAULT_COMPLEX_DIST
-                    if PIXEL_SIZE_CHANGE:
-                        pixel_size = MAX_PIXEL_SIZE
-                    else:
-                        screen.fill("#000000")
-                    break
+
+                break_flag = True
+                if PIXEL_SIZE_CHANGE:
+                    pixel_size = MAX_PIXEL_SIZE
+                else:
+                    screen.fill("#000000")
+                break
             if event.type == pygame.MOUSEBUTTONDOWN:
                 counter = 0
                 ratioX = event.pos[0] / WIDTH
